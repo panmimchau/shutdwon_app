@@ -1,49 +1,29 @@
-import pyautogui
 import time
-import schedule
 from datetime import datetime
-from threading import Timer
+import os
 
-def job_once():
-    global t
-    t = '20:38'
-         
+
+def shutdown():
+    a = int(input("Choose if you want to: 1 - shutdown, 2 - restart: "))
+    user_hour = int(input("Provide hour: "))
+    user_minute = int(input("Provide minute: "))
+
     while True:
-    
-
         now = datetime.now()
-        current_time = now.strftime("%H:%M")
-    
         starttime = time.time()
-    
-        t != current_time
-        print("Current Time =", current_time)
-        time.sleep(5.0 - ((time.time() - starttime) % 5.0))
-        
-    else:    
-        #pyautogui.moveTo(15, 1030, duration=0)
-        time.sleep(1)
-        pyautogui.click(15, 1050)
-        time.sleep(1)
-        pyautogui.click(15, 1000)
-        time.sleep(2)
-        #pyautogui.click(clicks=2, x=15, y=900)
-        pyautogui.moveTo(15, 940, duration=0)
-        
+        current_time = now.strftime("%H:%M")
 
-#schedule.every().day.at(t).do(job_once)
+        # print("Current Time =", current_time)
+        time.sleep(1.0 - ((time.time() - starttime) % 1.0))
+
+        if now.hour == user_hour and now.minute == user_minute:
+            print("pora na ceesa")
+            time.sleep(1)
+            if a == 1:
+                os.system("shutdown /s /t 1")  # shutdown
+            elif a == 2:
+                os.system("shutdown /r /t 1")  # restart
+            break
 
 
-#def shutdown():
-    ##pyautogui.moveTo(15, 1030, duration=0)
-    #time.sleep(1)
-    #pyautogui.click(15, 1050)
-    #time.sleep(1)
-    #pyautogui.click(15, 1000)
-    #time.sleep(2)
-    ##pyautogui.click(clicks=2, x=15, y=900)
-    #pyautogui.moveTo(15, 940, duration=0)
-
-
-#shutdown()
-job_once()
+shutdown()
