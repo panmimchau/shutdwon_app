@@ -14,7 +14,7 @@ def shutdown():
         current_time = now.strftime("%H:%M")
 
         # print("Current Time =", current_time)
-        time.sleep(1.0 - ((time.time() - starttime) % 1.0))
+        time.sleep(15.0 - ((time.time() - starttime) % 15.0))
 
         if now.hour == user_hour and now.minute == user_minute:
             print("pora na ceesa")
